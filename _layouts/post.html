@@ -17,35 +17,11 @@ layout: post_default
     &nbsp;
     {% endunless %}
 
-    {% unless page.page_num == null %}
-    {% unless page.categories == null %}
-      {% assign categories_list = page.categories %}
-      {% if categories_list.first[0] == null %}
-        {% for category in categories_list %} 
-            {% assign categories_page_num = site.categories[category].size %}
-            {% break %}
-        {% endfor %}
-      {% else %}
-        {% for category in categories_list %} 
-            {% assign categories_page_num = category[1].size %}
-            {% break %}
-        {% endfor %}
-      {% endif %}
-      {% assign categories_list = nil %}
-    <span class="pre-content">
-        页数：{{ page.page_num }}/{{ categories_page_num }}
-    </span>
-    &nbsp;
-    {% endunless %}
-    {% endunless %}
-
     <span class="pre-content">
         字数：{{ page.content | strip_html | strip_newlines | number_of_words }}
     </span>
     &nbsp;
 
-    <br>
-    &nbsp;
     <span class="pre-content reader-count">
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <span id="busuanzi_container_page_pv" style="display: none">
