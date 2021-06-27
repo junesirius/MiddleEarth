@@ -122,13 +122,16 @@ body {
 	letter-spacing: 3px;
 }
 
-.origin-style {
-    color: #999;
+.pre-content {
     font-size: 14px;
 }
 
-.wordcount-style {
-    font-size: 14px;
+.reader-count {
+    color: #999;
+}
+
+.page-number {
+    color: $second-color;
 }
 
 /* 

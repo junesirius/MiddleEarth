@@ -18,7 +18,7 @@ title: 归档
         {% endif %}
     {% endunless %}
     <li>
-        <span class="post-date">
+        <span class="post-date" hidden>
             {% assign date_format = site.date_format.archive %}
             {{ post.date | date: date_format }}
         </span>

@@ -6,7 +6,7 @@ title: 首页
 {% for post in paginator.posts %}
 <div class="well article">
 
-    <span class="post-date">
+    <span class="post-date" hidden>
         {% assign date_format = site.date_format.title %}
         {{ post.date | date: date_format }}
     </span>
@@ -17,13 +17,13 @@ title: 首页
     
     <div class="post-description">
       {% if post.description == null %}
-        {{ post.content | strip_html | truncatewords: 50 }}
+        {{ post.content | strip_html | truncatewords: 60 }}
       {% else %}
         {{ post.description }}
       {% endif %}
 
       {% unless post.tags == null %}
-        {% if post.tags contains "画" or post.tags contains "摄影" %}
+        {% if post.tags contains "图片" %}
           <br>
             {% assign images = post.content | split: "<img src=" %}
             {% for image in images %}
@@ -51,7 +51,7 @@ title: 首页
   </div>
   
   <div class="col-md-6" style="text-align: center;">
-  <span class="page_number ">{{ trans.page }}: {{ paginator.page }} of {{ paginator.total_pages }}</span>
+  <span class="page-number">{{ trans.page }}: {{ paginator.page }} of {{ paginator.total_pages }}</span>
   </div>
   
   <div class="col-md-3" style="text-align: right;">

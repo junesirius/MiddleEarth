@@ -4,32 +4,49 @@ layout: post_default
 {% assign trans = site.data.values[site.lan] %}
 <div class="well article">
     <h2><a href="{{ site.baseurl}}{{ page.url }}">{{ page.title }}</a></h2>
-    <span class="post-date">
+    <span class="post-date" hidden>
         {% assign date_format = site.date_format.title %}
         {{ page.date | date: date_format }}
     </span>
     &nbsp;
-    <span class="wordcount-style">
+
+    {% unless page.chapters == null %}
+    <span class="pre-content">
+        章节：{{ page.chapters }}
+    </span>
+    &nbsp;
+    {% endunless %}
+
+    {% unless page.page_num == null %}
+    {% unless page.categories == null %}
+      {% assign categories_list = page.categories %}
+      {% if categories_list.first[0] == null %}
+        {% for category in categories_list %} 
+            {% assign categories_page_num = site.categories[category].size %}
+            {% break %}
+        {% endfor %}
+      {% else %}
+        {% for category in categories_list %} 
+            {% assign categories_page_num = category[1].size %}
+            {% break %}
+        {% endfor %}
+      {% endif %}
+      {% assign categories_list = nil %}
+    <span class="pre-content">
+        页数：{{ page.page_num }}/{{ categories_page_num }}
+    </span>
+    &nbsp;
+    {% endunless %}
+    {% endunless %}
+
+    <span class="pre-content">
         字数：{{ page.content | strip_html | strip_newlines | number_of_words }}
     </span>
     &nbsp;
 
-    {% unless page.pov == null %}
-    <span class="wordcount-style">
-        视角：{{ page.pov }}
-    </span>
+    <br>
     &nbsp;
-    {% endunless %}
-
-    {% unless page.origin == null %}
-    <span class="origin-style">
-        首发位置：{{ page.origin }}
-    </span>
-    &nbsp;
-    {% endunless %}
-
-    <!-- Count reader number -->
-    <span class="origin-style">
+    <span class="pre-content reader-count">
         <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         <span id="busuanzi_container_page_pv" style="display: none">
             本文阅读量：<span id="busuanzi_value_page_pv"></span>次

@@ -23,14 +23,8 @@ title: 人物
             {% for post_character in node.characters %}
                 {% if post_character == character and node.title != null%}
                     <li>
-                        <div class="col-md-10" style="margin: 0; padding: 0">
+                        <div style="margin: 0; padding: 0">
                             <a href="{{ site.baseurl}}{{ node.url }}"> {{ node.title }}</a>
-                        </div>
-                        <div class="col-md-2" style="margin: 0; padding: 0">
-                            <span class="post-date">
-                            {% assign date_format = site.date_format.tags %}
-                            {{ node.date | date: date_format }}
-                            </span>
                         </div>
                     </li>
                     {% break %}

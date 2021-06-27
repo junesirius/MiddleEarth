@@ -93,7 +93,7 @@ title: 统计
     <span><b>人物个数：{{ character_num }}</b></span>
 </div>
 
-<div class="well article">
+<div class="well article" hidden>
     <a id="{{ date-analysis }}" style="position: relative; top: -50px"></a>
     <h2>日期</h2>
     {%for post in site.posts %}
@@ -154,7 +154,7 @@ title: 统计
         <li>总文章数：{{ site.posts | size }}</li>
         {% assign total_word_count = 0 %}
         {% for post in site.posts %}
-            {% assign post_word_count = post.content | strip_html | strip_newlines | size %}
+            {% assign post_word_count = post.content | strip_html | strip_newlines | number_of_words %}
             {% assign total_word_count = total_word_count | plus: post_word_count %}
         {% endfor %}
         <li>总字数：{{ total_word_count }}</li>

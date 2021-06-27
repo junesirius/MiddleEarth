@@ -14,14 +14,8 @@ title: 标签
             {% if node.title != null %}
             {% if group == null or group == node.group %}
                 <li>
-                    <div class="col-md-10" style="margin: 0; padding: 0">
+                    <div style="margin: 0; padding: 0">
                         <a href="{{ site.baseurl}}{{ node.url }}"> {{ node.title }}</a>
-                    </div>
-                    <div class="col-md-2" style="margin: 0; padding: 0">
-                        <span class="post-date">
-                        {% assign date_format = site.date_format.tags %}
-                        {{ node.date | date: date_format }}
-                        </span>
                     </div>
                 </li>
             {% endif %}
