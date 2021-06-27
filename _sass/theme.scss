@@ -134,6 +134,19 @@ body {
     color: $second-color;
 }
 
+.pagination {
+    color: $second-color;
+}
+
+.btn-default {
+    background-color: $link-color-1;
+    color: $third-color;
+}
+
+.btn-default:hover {
+    background-color: $second-color;
+}
+
 /* 
     custom bootstrap navbar
     reference from: https://stackoverflow.com/questions/18529274/change-navbar-color-in-twitter-bootstrap-3 
