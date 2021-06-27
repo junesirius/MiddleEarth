@@ -1,11 +1,11 @@
 # Jekyll configuration
 
-name: VO Station
-name_en: Viggo Mortensen, Orlando Bloom
+name: Middle Earth
+name_en: J.R.R. Tolkien, Christopher Tolkien
 
 # url is currently only used for the RSS feed in feed.xml
 url: https://junesirius.github.io
-baseurl: "/VOStation"
+baseurl: "/MiddleEarth"
 
 ## default date_format
 date_format: 
@@ -25,4 +25,4 @@ gems: ['jekyll-paginate']
 
 exclude: ['README.md', 'LICENSE', "*.bak"]
 
-permalink: /:year/:title
+permalink: /:title
