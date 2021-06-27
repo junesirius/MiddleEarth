@@ -87,6 +87,9 @@ body {
 
 /* post style */
 .article {
+    background-image: url(/MiddleEarth/assets/images/article_bg.jpg);
+    background-repear: no-repeat;
+    background-size: cover;
     font-size: 17px;
     color: $article-color;
 }

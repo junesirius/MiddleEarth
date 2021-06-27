@@ -1,36 +1,36 @@
 @charset "utf-8";
 
 /* main theme */
-$main-color: #4a2e48 !default;
-$second-color: #bcb8ce !default;
-$third-color: #4c394f !default;
+$main-color: #a26c3d !default;
+$second-color: #efe4c7 !default;
+$third-color: #331d0d !default;
 
-$link-color-1:#bbb !default;
+$link-color-1: #d1aa45 !default;
 
 /* side bar */
-$side-bar-color: #fff !default;
+$side-bar-color: $second-color;
 $side-bar-background-color: $main-color;
-$side-bar-a-color: $link-color-1;
-$side-bar-a-hover-color: $second-color;
+$side-bar-a-color: $second-color;
+$side-bar-a-hover-color: $link-color-1;
 
 /* footer */
-$footer-color: #fff !default;
+$footer-color: $second-color;
 $footer-a-color: $link-color-1;
 $footer-a-hover-color: $second-color;
 $footer-background-color: $main-color;
 
 /* article */
-$article-color: $main-color;
-$article-a-color: $third-color;
-$article-a-hover-color: $second-color;
-$article-background-color: #eee;
+$article-color: $third-color;
+$article-a-color: $main-color;
+$article-a-hover-color: $link-color-1;
+$article-background-color: $second-color;
 
 /* nav-bar */
 $nav-bar-background-color: $main-color;
-$nav-bar-color: #fff;
-$nav-bar-open-a-background-color: $second-color;
+$nav-bar-color: $second-color;
+$nav-bar-open-a-background-color: $link-color-1;
 $nav-bar-icon-bar: $main-color;
-$nav-bar-brand-color: #fff;
+$nav-bar-brand-color: $second-color;
 $nav-bar-brand-hover-color: $link-color-1;
 
 
