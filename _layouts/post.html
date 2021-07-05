@@ -112,6 +112,38 @@ layout: post_default
     </ul>
     {% endunless %}
 
+    <!-- glossaries after post -->
+    {% unless page.glossaries == null %}
+    <ul class="list-unstyled list-inline">
+      <li class="icon-img-style"><i class="icon-book"></i></li>
+      {% assign glossaries_list = page.glossaries %}
+      {% if glossaries_list.first[0] == null %}
+        {% for glossary in glossaries_list %}
+            {% assign charcter_count = 0 %}
+            {% for node in site.posts %}
+                {% for node_glossary in node.glossaries %}
+                    {% if node_glossary == glossary %}
+                        {% assign glossary_count = glossary_count | plus: 1 %}
+                        {% break %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            <li class="icon-style">
+                <a href="{{ site.baseurl }}/glossaries#{{ glossary }}">{{ glossary }} ({{ glossary_count }})</a>{% unless forloop.last %},{% endunless %}
+            </li>
+            {% assign glossary_count = 0 %}
+        {% endfor %}
+      {% else %}
+        {% for glossary in glossaries_list %}
+            <li class="icon-style">
+                <a href="{{ site.baseurl }}/glossaries">{{ glossary[0] }} ({{ glossary[1].size }})</a>{% unless forloop.last %},{% endunless %}
+            </li>
+        {% endfor %}
+      {% endif %}
+      {% assign glossaries_list = nil %}
+    </ul>
+    {% endunless %}
+
     </div>
 
 </div>

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 词汇
+title: 词表
 ---
 <!-- Look for the name list of all glossaries -->
 {% assign glossary_list = "" | split: "" %}
