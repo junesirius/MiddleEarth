@@ -6,8 +6,7 @@ title: 图片
 
 <div class="well article">
 {% for tag in tags %}
-    {% if tag[0] == "图片" %}
-        <a id="图片" style="position: relative; top: -50px"></a>
+    {% if tag[0] == "picture" %}
         {% assign pages_list = tag[1] %}
         {% for page in pages_list %}
             {% assign images = page.content | split: "<img src=" %}
