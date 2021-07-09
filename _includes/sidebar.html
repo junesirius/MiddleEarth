@@ -11,7 +11,7 @@
 </div>
 
 <!-- 最近更新 -->
-<div class="sidebar well">
+<div class="sidebar well" hidden>
     <h1>{{ trans.recent_posts }}</h1>
     <ul>
         {% for post in site.posts limit: 5 %}
@@ -22,28 +22,12 @@
 
 <!-- 热门圈子 -->
 <div class="sidebar well">
-    <h1>{{ trans.hot_categories }}</h1>
-    {% assign max_category_count = 0 %}
-    {% for category in site.categories %}
-        {% if category[1].size > max_category_count %}
-            {% assign max_category_count = category[1].size %}
-        {% endif %}
-    {% endfor %}
-
+    <h1>{{ trans.all_categories }}</h1>
     {% assign sortedcategories = site.categories | sort %}
-    {% assign category_display_count = 0 %}
-    {% for i in (1..max_category_count) reversed %}
-        {% for category in sortedcategories %}
-            {% if category[1].size == i %}
-                <li>
-                    <a href="{{ site.baseurl }}/categories#{{ category[0] }}">{{ category[0] }} ({{ category[1].size }})</a>
-                    {% assign category_display_count = category_display_count | plus: 1 %}
-                </li>
-            {% endif %}
-        {% endfor %}
-        {% if category_display_count >= 5 %}
-            {% break %}
-        {% endif %}
+    {% for category in sortedcategories %}
+        <li>
+            <a href="{{ site.baseurl }}/index#{{ category[0] }}">{{ category[0] }} ({{ category[1].size }})</a>
+        </li>
     {% endfor %}
 </div>
 
@@ -68,7 +52,7 @@
                 </li>
             {% endif %}
         {% endfor %}
-        {% if tag_display_count >= 5 %}
+        {% if tag_display_count >= 7 %}
             {% break %}
         {% endif %}
     {% endfor %}

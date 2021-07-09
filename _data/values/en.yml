@@ -1,18 +1,19 @@
 recent_posts: Recent Posts
-hot_tags: Popular Tags
-hot_categories: Popular Categories
+hot_tags: "Hot Tags"
+hot_categories: "Hot Categories"
+all_categories: "All Categories"
 home: Home
 tags: Tags
 archive: Archive
 categories: Categories
 characters: Characters
 glossaries: Glossaries
-pictures: "Pictures"
-analysis: "Analysis"
+pictures: Pictures
+analysis: Analysis
 about: About
-thanks: "Powered by"
+thanks: "Powered by "
 page: Page
-newer_post: Newer Post
-older_post: Older Post
-newer_page: Newer Page
-older_page: Older Page
+newer_post: "Newer Post"
+older_post: "Older Post"
+newer_page: "Newer Page"
+older_page: "Older Page"

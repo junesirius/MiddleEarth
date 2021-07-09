@@ -2,15 +2,9 @@
 layout: default
 title: 首页
 ---
-{% assign trans = site.data.values[site.lan] %}
+
 {% for post in paginator.posts reversed %}
 <div class="well article">
-
-    <span class="post-date" hidden>
-        {% assign date_format = site.date_format.title %}
-        {{ post.date | date: date_format }}
-    </span>
-    
     <h2>
         <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </h2>
@@ -21,25 +15,16 @@ title: 首页
       {% else %}
         {{ post.description }}
       {% endif %}
-
-      {% unless post.tags == null %}
-        {% if post.tags contains "图片" %}
-          <br>
-            {% assign images = post.content | split: "<img src=" %}
-            {% for image in images %}
-              {% assign img = image | split: ' alt="" />' | first %}
-              {% if img contains site.baseurl %}
-                <a href="{{ site.baseurl }}{{ post.url }}"><img src={{ img }} style="height: 200px; width: auto; object-fit: scale-down;"></a>
-              {% endif %}
-            {% endfor %}
-        {% endif %}
-      {% endunless %}
     </div>
-    
 </div>
 {% endfor %}
 
-<div class="pagination" style="width: 100%;">
+
+
+
+<!-- Paginator -->
+{% assign trans = site.data.values[site.lan] %}
+<div class="pagination" style="width: 100%;" hidden>
   <div class="col-md-3" style="text-align: left;">
   {% if paginator.previous_page %}
       {% if paginator.previous_page == 1 %}
