@@ -3,20 +3,32 @@ layout: default
 title: 首页
 ---
 
-{% for post in paginator.posts reversed %}
-<div class="well article">
-    <h2>
-        <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </h2>
-    
-    <div class="post-description">
-      {% if post.description == null %}
-        {{ post.content | strip_html | truncatewords: 60 }}
-      {% else %}
-        {{ post.description }}
-      {% endif %}
+{% assign sortedcategories = site.categories | sort %}
+{% for category in sortedcategories %}
+    <div class="well article">
+        <a id="{{ category[0] }}" style="position: relative; top: -50px"></a>
+        <h2><a href="{{ site.baseurl }}/categories#{{ category[0] }}">{{ category[0] }}</a></h2>
+
+        <ul>
+        {% assign pages_list = category[1] %}
+        {% assign chapter_list = "" | split: "" %}
+        {% for node in pages_list reversed %}
+            {% unless node.chapters == null %}
+                {% for chapter in node.chapters %}
+                    {% unless chapter_list contains chapter %}
+                        {% assign chapter_list = chapter_list | push: chapter %}
+                        <li>
+                            <div style="margin: 0; padding: 0">
+                                <a href="{{ site.baseurl }}{{ node.url }}">{{ node.title }}</a>
+                            </div>
+                        </li>
+                    {% endunless %}
+                {% endfor %}
+            {% endunless %}
+        {% endfor %}
+        {% assign chapter_list = nil %}
+        </ul>
     </div>
-</div>
 {% endfor %}
 
 
