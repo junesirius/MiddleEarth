@@ -1,29 +1,27 @@
 ---
 layout: default
-title: 归档
+title: 标签
 ---
 
 <div class="well article">
-{%for post in site.posts %}
-    {% unless post.next %}
-        <h2>{{ post.date | date: '%Y' }}</h2>
-        <ul>
-    {% else %}
-        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
-        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
-        {% if year != nyear %}
-            </ul>
-            <h2>{{ post.date | date: '%Y' }}</h2>
-            <ul>
-        {% endif %}
-    {% endunless %}
-    <li>
-        <span class="post-date" hidden>
-            {% assign date_format = site.date_format.archive %}
-            {{ post.date | date: date_format }}
-        </span>
-        <a href="{{ site.baseurl}}{{ post.url }}">{{ post.title }}</a>
-    </li>
-{% endfor %}
-</ul>
+{% assign sortedcategories = site.categories | sort %}
+{% for category in sortedcategories %}
+    <a id="{{ category[0] }}" style="position: relative; top: -50px"></a>
+    <h2><a href="{{ site.baseurl }}/categories#{{ category[0] }}">{{ category[0] }}</a></h2>
+    <ul>
+        {% assign pages_list = category[1] %}
+        {% for node in pages_list %}
+            {% if node.title != null %}
+            {% if group == null or group == node.group %}
+                <li>
+                    <div style="margin: 0; padding: 0">
+                        <a href="{{ site.baseurl}}{{ node.url }}"> {{ node.title }}</a>
+                    </div>
+                </li>
+            {% endif %}
+            {% endif %}
+        {% endfor %}
+        {% assign pages_list = nil %}
+    </ul>
+{% endfor %}    
 </div>
