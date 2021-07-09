@@ -12,7 +12,7 @@ title: 图片
             {% assign images = page.content | split: "<img src=" %}
             {% for image in images %}
                 {% assign img = image | split: ' alt="" />' | first %}
-                {% if img contains site.baseurl %}
+                {% if img contains "assets/images" %}
                     <a href="{{ site.baseurl }}{{ page.url }}"><img src={{ img }} style="height: 200px; width: auto; object-fit: scale-down; margin-bottom: 5px;"></a>
                 {% endif %}
             {% endfor %}
