@@ -10,7 +10,7 @@ title: 标签
     <h2><a href="{{ site.baseurl }}/categories#{{ category[0] }}">{{ category[0] }}</a></h2>
     <ul>
         {% assign pages_list = category[1] %}
-        {% for node in pages_list %}
+        {% for node in pages_list reversed %}
             {% if node.title != null %}
             {% if group == null or group == node.group %}
                 <li>

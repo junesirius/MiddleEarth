@@ -13,7 +13,7 @@ title: 分类
     <!-- Find tags and characters under the category -->
     {% assign ctg_tag_list = "" | split: "" %}
     {% assign ctg_character_list = "" | split: "" %}
-    {% for node in pages_list %}
+    {% for node in pages_list reversed %}
         {% for tag in node.tags %}
             {% unless ctg_tag_list contains tag %}
                 {% assign ctg_tag_list = ctg_tag_list | push: tag %}

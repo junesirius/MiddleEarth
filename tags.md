@@ -10,7 +10,7 @@ title: 标签
     <h2>{{ tag[0] }}</h2>
     <ul>
         {% assign pages_list = tag[1] %}
-        {% for node in pages_list %}
+        {% for node in pages_list reversed %}
             {% if node.title != null %}
             {% if group == null or group == node.group %}
                 <li>

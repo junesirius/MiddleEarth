@@ -8,7 +8,7 @@ title: 图片
 {% for tag in tags %}
     {% if tag[0] == "picture" %}
         {% assign pages_list = tag[1] %}
-        {% for page in pages_list %}
+        {% for page in pages_list reversed %}
             {% assign images = page.content | split: "<img src=" %}
             {% for image in images %}
                 {% assign img = image | split: ' alt="" />' | first %}

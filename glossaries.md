@@ -4,7 +4,7 @@ title: 词表
 ---
 <!-- Look for the name list of all glossaries -->
 {% assign glossary_list = "" | split: "" %}
-{% for node in site.posts %}
+{% for node in site.posts reversed %}
     {% for glossary in node.glossaries %}
         {% unless glossary_list contains glossary %}
             {% assign glossary_list = glossary_list | push: glossary %}
@@ -19,7 +19,7 @@ title: 词表
     <a id="{{ glossary }}" style="position: relative; top: -50px"></a>
     <h2>{{ glossary }}</h2>
     <ul>
-        {% for node in site.posts %}
+        {% for node in site.posts reversed %}
             {% for post_glossary in node.glossaries %}
                 {% if post_glossary == glossary and node.title != null%}
                     <li>

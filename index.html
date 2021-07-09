@@ -3,7 +3,7 @@ layout: default
 title: 首页
 ---
 {% assign trans = site.data.values[site.lan] %}
-{% for post in paginator.posts %}
+{% for post in paginator.posts reversed %}
 <div class="well article">
 
     <span class="post-date" hidden>

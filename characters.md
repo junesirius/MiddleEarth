@@ -4,7 +4,7 @@ title: 人物
 ---
 <!-- Look for the name list of all characters -->
 {% assign character_list = "" | split: "" %}
-{% for node in site.posts %}
+{% for node in site.posts reversed %}
     {% for character in node.characters %}
         {% unless character_list contains character %}
             {% assign character_list = character_list | push: character %}
@@ -19,7 +19,7 @@ title: 人物
     <a id="{{ character }}" style="position: relative; top: -50px"></a>
     <h2>{{ character }}</h2>
     <ul>
-        {% for node in site.posts %}
+        {% for node in site.posts reversed %}
             {% for post_character in node.characters %}
                 {% if post_character == character and node.title != null%}
                     <li>
