@@ -1,4 +1,4 @@
-name: pages build and deployment
+name: Customized pages build and deployment
 
 on:
   push:
@@ -60,17 +60,17 @@ jobs:
         if-no-files-found: error
         compression-level: 9
         overwrite: true
-  report-build-status:
-    runs-on: ubuntu-22.04
-    steps:
-    - name: Report Build Status
-      shell: bash
-      run: |
-        gh api -X POST repos/${{ github.repository }}/pages/telemetry \
-          -F github_run_id=${{ github.run_id }} \
-          -F conclusion=${{ job.status }}
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  # report-build-status:
+  #   runs-on: ubuntu-22.04
+  #   steps:
+  #   - name: Report Build Status
+  #     shell: bash
+  #     run: |
+  #       gh api -X POST repos/${{ github.repository }}/pages/telemetry \
+  #         -F github_run_id=${{ github.run_id }} \
+  #         -F conclusion=${{ job.status }}
+  #     env:
+  #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-22.04
     steps:
