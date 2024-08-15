@@ -58,9 +58,11 @@ jobs:
         path: ${{ runner.temp }}/artifact.tar
         retention-days: 1
         if-no-files-found: error
-        comression-level: 9
+        compression-level: 9
         overwrite: true
   report-build-status:
+    runs-on: ubuntu-22.04
+    steps:
     - name: Report Build Status
       shell: bash
       run: |
@@ -71,6 +73,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
     runs-on: ubuntu-22.04
+    steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
       with:
