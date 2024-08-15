@@ -1,0 +1,82 @@
+name: pages build and deployment
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ghcr.io/actions/jeckyll-build-pages:v1.0.12
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        ref: master
+        submodules: recursive
+        repository: ${{ github.repository }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        ssh-strict: true
+        ssh-user: git
+        persist-credentials: true
+        clean: true
+        sparse-checkout-cone-mode: true
+        fetch-depth: 1
+        fetch-tags: false
+        show-progress: true
+        lfs: false
+        set-safe-directory: true
+    - name: Build with Jekyll
+      uses: actions/jekyll-build-pages@v1
+      with:
+        source: .
+        destination: ./_site
+        future: true
+        build_revision: ${{ github.sha }}
+        verbose: true
+        token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Archive Artifact
+      shell: sh
+      if: runner.os == 'Linux'
+      run: |
+        echo ::group::Archive artifact
+        tar \
+          --dereference --hard-dereference \
+          --directory "$INPUT_PATH" \
+          -cvf "$RUNNER_TEMP/artifact.tar" \
+          --exclude=.git \
+          --exclude=.github \
+          .
+        echo ::endgroup::
+      env:
+        INPUT_PATH: ./_site
+        RUNNER_TEMP: ${{ runner.temp }}
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: github-pages
+        path: ${{ runner.temp }}/artifact.tar
+        retention-days: 1
+        if-no-files-found: error
+        comression-level: 9
+        overwrite: true
+  report-build-status:
+    - name: Report Build Status
+      shell: bash
+      run: |
+        gh api -X POST repos/${{ github.repository }}/pages/telemetry \
+          -F github_run_id=${{ github.run_id }} \
+          -F conclusion=${{ job.status }}
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy:
+    runs-on: ubuntu-22.04
+    - name: Deploy to GitHub Pages
+      uses: actions/deploy-pages@v4
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        timeout: 600000
+        error_count: 10
+        reporting_interval: 5000
+        artifact_name: github-pages
+        preview: false
