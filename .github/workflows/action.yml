@@ -10,8 +10,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - name: Pull ghcr.io/actions/jeckyll-build-pages:v1.0.12
-      run: docker pull ghcr.io/actions/jeckyll-build-pages:v1.0.12
     - name: Checkout
       uses: actions/checkout@v4
       with:
