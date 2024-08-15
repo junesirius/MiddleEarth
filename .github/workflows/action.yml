@@ -7,8 +7,10 @@ on:
 
 jobs:
   build:
-    runs-on: ghcr.io/actions/jeckyll-build-pages:v1.0.12
+    runs-on: ubuntu-latest
     steps:
+    - name: Pull ghcr.io/actions/jeckyll-build-pages:v1.0.12
+      run: docker pull ghcr.io/actions/jeckyll-build-pages:v1.0.12
     - name: Checkout
       uses: actions/checkout@v4
       with:
@@ -61,7 +63,8 @@ jobs:
         compression-level: 9
         overwrite: true
   # report-build-status:
-  #   runs-on: ubuntu-22.04
+  #   runs-on: ubuntu-latest
+  #   needs: build
   #   steps:
   #   - name: Report Build Status
   #     shell: bash
@@ -72,7 +75,8 @@ jobs:
   #     env:
   #       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   deploy:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
+    needs: build
     steps:
     - name: Deploy to GitHub Pages
       uses: actions/deploy-pages@v4
