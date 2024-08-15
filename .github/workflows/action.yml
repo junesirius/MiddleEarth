@@ -6,6 +6,10 @@ on:
       - master
       - test/workflow
 
+permissions:
+  id-token: write
+  pages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
