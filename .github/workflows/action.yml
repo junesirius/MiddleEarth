@@ -56,6 +56,11 @@ jobs:
         if-no-files-found: error
         compression-level: 9
         overwrite: true
+    - name: Deploy to GitHub Pages
+      id: deployment
+      uses: JamesIves/github-pages-deploy-action@v4.6.9
+      with:
+        folder: ./_site
   report-build-status:
     runs-on: ubuntu-latest
     needs: build
@@ -68,13 +73,4 @@ jobs:
           -F conclusion=${{ job.status }}
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # Deployment job
-  deploy:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-    - name: Deploy to GitHub Pages
-      id: deployment
-      uses: JamesIves/github-pages-deploy-action@v4.6.9
-      with:
-        folder: ./_site
+
