@@ -51,7 +51,7 @@ jobs:
         shell: sh
         if: runner.os == 'Linux'
         run: |
-          chmod -c -R +rwX "$INPUT_PATH" |
+          sudo chmod -c -R +rwX "$INPUT_PATH" |
           while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
