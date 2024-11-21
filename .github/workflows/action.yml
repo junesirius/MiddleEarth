@@ -55,9 +55,7 @@ jobs:
           while read line; do
             echo "::warning title=Invalid file permissions automatically fixed::$line"
           done
-          TMPDIR=$(mktemp -d)
-          export TMPDIR
-          find "$INPUT_PATH" -name '*.html' -exec sed -i '/^\s*$/d' {} +
+          sudo find "$INPUT_PATH" -name '*.html' -exec sed -i '/^\s*$/d' {} +
         env:
           INPUT_PATH: ./_site
       - name: Archive Artifact
